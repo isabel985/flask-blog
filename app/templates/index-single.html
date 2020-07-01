@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+{% block content %}
+  <h1>Post Page</h1>
+  <hr>
+
+  <a href="{{ url_for('home') }}">Go Back</a>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div>{{ post.body }}</div>
+      <small>{{ post.created_on.strftime('%a, %B %d, %Y @ %I:%M %p') }}</small>
+    </li>
+  </ul>
+{% endblock %}

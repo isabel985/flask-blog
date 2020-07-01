@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block content %}
+  <h1>Users Page</h1>
+  <hr>
+
+  <a href="{{ url_for('home') }}">Go Back</a>
+
+  <ul class="list-group">
+    {% for user in users %}
+      <li class="list-group-item">
+        <div>
+          {{ user.email }}
+          <span>
+            {% if not current_user.is_following(user) %}
+              <a class="btn btn-success" href="/users/follow/{{ user.id }}">
+                Follow
+              </a>
+            {% else %}
+              <a class="btn btn-warning" href="/users/unfollow/{{ user.id }}">
+                Unfollow
+              </a>
+            {% endif %}
+          </span>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
