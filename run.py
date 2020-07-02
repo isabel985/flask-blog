@@ -1,7 +1,8 @@
-from app import db, create_app
+from app import db, create_app, cli
 from app.models import User, Post
 
 app = create_app()
+cli.register(app)
 
 @app.shell_context_processor
 def make_context():
@@ -9,4 +10,4 @@ def make_context():
     db=db,
     User=User,
     Post=Post
-  )
+  ) 
