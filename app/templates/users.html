@@ -1,4 +1,9 @@
 {% extends 'layout.html' %}
+
+{% block title %}
+  Users | {{ super() }} 
+{% endblock %}
+
 {% block content %}
   <h1>Users Page</h1>
   <hr>
@@ -9,18 +14,20 @@
     {% for user in users %}
       <li class="list-group-item">
         <div>
-          {{ user.email }}
+          <img class="img-fuild" src="{{ user.avatar(64) }}" alt=""> {{ user.email }}
+          {% if not current_user.is_following(user) %}
           <span>
-            {% if not current_user.is_following(user) %}
-              <a class="btn btn-success" href="/users/follow/{{ user.id }}">
-                Follow
-              </a>
-            {% else %}
-              <a class="btn btn-warning" href="/users/unfollow/{{ user.id }}">
-                Unfollow
-              </a>
-            {% endif %}
+            <a class="btn btn-success" href="{{ url_for('users.user_follow', id=user.id) }}">
+              Follow
+            </a>
           </span>
+          {% else %}
+          <span>
+            <a class="btn btn-warning" href="{{ url_for('users.user_unfollow', id=user.id) }}">
+              Unfollow
+            </a>
+          </span>
+          {% endif %}
         </div>
       </li>
     {% endfor %}

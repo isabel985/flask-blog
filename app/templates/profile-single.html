@@ -1,15 +1,19 @@
 {% extends 'layout.html' %}
+
+{% block title %}
+  Post | {{ super() }}
+{% endblock %}
+
 {% block content %}
   <h1>Post Page</h1>
   <hr>
 
+  <a href="{{ url_for('profile') }}">Go Back</a>
+
   <ul class="list-group">
-    {% for post in posts %}
-      <a href="{{ url_for('profile') }}">Go Back</a>
-        <li class="list-group-item">
-          <div>{{ post.body }}</div>
-          <small>{{ post.created_on.strftime('%a, %B %d, %Y @ %I:%M %p') }}</small>
-        </li>
-    {% endfor %}
+    <li class="list-group-item">
+      <small>Posted: {{ moment(post.created_on).fromNow() }}</small>
+      <div>{{ post.body }}</div>
+    </li>
   </ul>
 {% endblock %}

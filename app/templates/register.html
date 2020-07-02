@@ -1,13 +1,17 @@
 {% extends 'layout.html' %}
 
+{% block title %}
+  Register | {{ super() }} 
+{% endblock %}
+
 {% block content %}
 <h1>Register Page</h1>
 <hr>
 <div class="row">
-  <div class="col-md-6">
-    <form action="{{ url_for('register') }}" method="POST">
+  <div class="col-md-4">
+    <form action="{{ url_for('account.register') }}" method="POST">
       <div class="form-group">
-        <input type="text" name="name" class="form-control" placeholder="Name">
+        <input type="text" name="name" class="form-control" placeholder="Username">
       </div>
       <div class="form-group">
         <input type="text" name="email" class="form-control" placeholder="Email">
